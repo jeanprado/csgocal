@@ -1,6 +1,6 @@
 source('scraping.R')
 
-# more information about Google Calendar importing: https://support.google.com/calendar/answer/37118
+# more information about Google Calendar csv: https://support.google.com/calendar/answer/37118
 
 gcal <- matches %>%
   mutate(gcal_title=ifelse(has_match == T,
