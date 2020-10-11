@@ -8,8 +8,8 @@ raw_matches <- read_html('https://www.hltv.org/matches?predefinedFilter=top_tier
 
 # create df's columns -----------------------------------------------------
 
-# time
-tbl_time <- raw_matches %>% html_nodes('a div .matchTime') %>% html_attr('data-unix') %>% 
+# datetime (change with_tz to your timezone)
+tbl_datetime <- raw_matches %>% html_nodes('a div .matchTime') %>% html_attr('data-unix') %>% 
   as.numeric() %>% `/`(1000) %>% as.POSIXct(origin='1970-01-01') %>% 
   as_datetime(tz='Europe/Amsterdam') %>% with_tz(tzone='America/Sao_Paulo')
 
@@ -40,7 +40,7 @@ tbl_match_url <- raw_matches %>% html_nodes('a.match') %>% html_attr('href') %>%
 
 # creates tibble ----------------------------------------------------------
 
-matches <- tibble(datetime=tbl_time,
+matches <- tibble(datetime=tbl_datetime,
                   rating=tbl_rating,
                   has_match=tbl_has_match,
                   match_type=NA_character_,
