@@ -1,5 +1,7 @@
 source('scraping.R')
 
+# more information about Google Calendar importing: https://support.google.com/calendar/answer/37118
+
 gcal <- matches %>%
   mutate(gcal_title=ifelse(has_match == T,
                            paste0(team1, ' x ', team2, ' (★', rating, '/5)'),
