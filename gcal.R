@@ -2,6 +2,8 @@ source('scraping.R')
 
 # more information about Google Calendar csv: https://support.google.com/calendar/answer/37118
 
+matches <- scrape_matches('https://www.hltv.org/events/5464/matches')
+
 gcal <- matches %>%
   mutate(gcal_title=ifelse(has_match == T,
                            paste0(team1, ' x ', team2, ' (★', rating, '/5)'),
